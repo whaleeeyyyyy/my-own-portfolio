@@ -1,1141 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>William | Developer</title>
-    <meta name="keywords" content="william, developer, full-stack, portfolio" />
-    <meta
-      name="description"
-      content="Weallfearnius William Justin | Full Stack Developer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <style>
-      /* Import Custom Font */
-      @font-face {
-        font-family: "Gloock";
-        src: url("Gloock-Regular.ttf") format("truetype"),
-          url("Gloock-Regular.otf") format("opentype");
-      }
-
-      /* 🌐 Global Theme Variables */
-      :root {
-        --main-bg-color: #ffffff;
-        --main-text-color: #1e293b;
-        --accent-color: #3959e4;
-        --accent-gradient: linear-gradient(135deg, #3959e4 0%, #764ba2 100%);
-        --light-bg-color: #f8f9fa;
-        --secondary-color: #667eea;
-        --font-family: "Gloock", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        --header-gradient: linear-gradient(
-          135deg,
-          rgba(57, 89, 228, 0.95) 0%,
-          rgba(118, 75, 162, 0.95) 100%
-        );
-      }
-
-      /* Universal Reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: var(--font-family);
-        line-height: 1.6;
-        color: var(--main-text-color);
-        background-color: var(--main-bg-color);
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* 🧭 Enhanced Header */
-      .main-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 50px;
-        background: linear-gradient(135deg, #764ba2 0%, #3959e4 100%);
-        color: #fff;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        box-sizing: border-box;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-
-      .main-header.hidden {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      .header-left .site-title {
-        font-family: var(--font-family);
-        font-size: 1.8em;
-        font-weight: bold;
-        color: #fff;
-        text-decoration: none;
-        letter-spacing: 1px;
-        transition: transform 0.3s ease;
-      }
-
-      .header-left .site-title:hover {
-        transform: scale(1.05);
-      }
-
-      .main-nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        gap: 30px;
-        align-items: center;
-      }
-
-      .main-nav li a {
-        color: #fff;
-        text-decoration: none;
-        font-family: var(--font-family);
-        font-size: 1.1em;
-        padding: 5px 0;
-        transition: color 0.3s ease, border-bottom 0.3s ease;
-        position: relative;
-      }
-
-      .main-nav li a:hover {
-        color: #f093fb;
-      }
-
-      .main-nav li a::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background: #f093fb;
-        transition: width 0.3s ease;
-      }
-
-      .main-nav li a:hover::after {
-        width: 100%;
-      }
-
-      .main-nav .resume-button {
-        background: linear-gradient(135deg, #3959e4 0%, #764ba2 100%);
-        color: #fff;
-        padding: 10px 25px;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        border: 2px solid #fff;
-        cursor: pointer;
-        display: inline-block;
-      }
-
-      .main-nav .resume-button:hover {
-        background: #fff;
-        color: var(--accent-color);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
-      }
-
-      .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        color: #fff;
-        font-size: 2em;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-
-      .menu-toggle:hover {
-        transform: scale(1.1);
-      }
-
-      /* 🎯 Hero Section */
-      #hero {
-        background: var(--accent-gradient);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        padding-top: 80px;
-      }
-
-      .hero-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 3rem;
-      }
-
-      .hero-content {
-        flex: 1;
-        min-width: 300px;
-      }
-
-      .hero-image img {
-        max-width: 400px;
-        width: 100%;
-      }
-
-      .hero-title {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        font-family: var(--font-family);
-      }
-
-      .text-color-main {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        font-weight: 800;
-      }
-
-      .cta-btn {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-family: var(--font-family);
-      }
-
-      .cta-btn--hero {
-        background: #fff;
-        color: var(--accent-color);
-        border: 2px solid #fff;
-      }
-
-      .cta-btn--hero:hover {
-        background: transparent;
-        color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .cta-btn--resume {
-        background: var(--secondary-color);
-        color: #fff;
-        border: 2px solid var(--secondary-color);
-      }
-
-      .cta-btn--resume:hover {
-        background: #5568d3;
-        border-color: #5568d3;
-        transform: translateY(-3px);
-      }
-
-      .text-color-main {
-        color: var(--accent-color);
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .text-color-main:hover {
-        opacity: 0.8;
-        transform: translateY(-3px);
-      }
-
-      /* 👤 About Section */
-      #about {
-        padding: 10px 0;
-        background: var(--light-bg-color);
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        text-align: center;
-        color: var(--main-text-color);
-        position: relative;
-        padding-bottom: 1rem;
-        font-family: var(--font-family);
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: var(--accent-gradient);
-        border-radius: 2px;
-      }
-
-      .about-wrapper {
-        display: flex;
-        gap: 3rem;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .col-md-6 {
-        flex: 1;
-        min-width: 300px;
-      }
-
-      .about-wrapper__image img {
-        width: 90%;
-        border-radius: 15px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .about-wrapper__info-text {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        margin-bottom: 1.5rem;
-        color: var(--main-text-color);
-        text-align: justify;
-        font-family: var(--font-family);
-      }
-
-      /* 📰 Featured */
-      #featured {
-        padding: 10px 0;
-        background: var(--main-bg-color);
-      }
-
-      .featured-article {
-        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-        border-left: 5px solid var(--secondary-color);
-        border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-      }
-
-      .featured-article:hover {
-        transform: translateY(-5px);
-      }
-
-      .featured-badge {
-        background: var(--accent-gradient);
-        color: #fff;
-        padding: 0.5rem 1.5rem;
-        border-radius: 50px;
-        font-weight: 600;
-        display: inline-block;
-        margin-bottom: 1rem;
-        font-family: var(--font-family);
-      }
-
-      .featured-source {
-        font-size: 2rem;
-        color: var(--secondary-color);
-        margin: 1rem 0;
-        font-weight: 600;
-      }
-
-      .featured-title {
-        font-size: 1.8rem;
-        color: var(--main-text-color);
-        margin: 1rem 0;
-        font-family: var(--font-family);
-      }
-
-      .featured-context {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: var(--main-text-color);
-        margin: 1rem 0;
-        font-family: var(--font-family);
-      }
-
-      .smaller-picture {
-        width: 100%;
-        max-width: fit-content;
-        border-radius: 15px;
-        margin: 1.5rem 0;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .featured-quote {
-        background: rgba(102, 126, 234, 0.1);
-        border-left: 4px solid var(--secondary-color);
-        padding: 1.5rem;
-        margin: 2rem 0;
-        font-style: italic;
-        color: var(--main-text-color);
-        font-family: var(--font-family);
-      }
-
-      .featured-link {
-        display: inline-block;
-        color: var(--accent-color);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        font-family: var(--font-family);
-      }
-
-      .featured-link:hover {
-        color: var(--secondary-color);
-        transform: translateX(5px);
-      }
-
-      /* 💼 Projects */
-      #projects {
-        padding: 10px 0;
-        background: var(--light-bg-color);
-      }
-
-      .project-wrapper {
-        margin-bottom: 5rem;
-      }
-
-      .row {
-        display: flex;
-        gap: 3rem;
-        align-items: center;
-        margin-bottom: 5rem;
-        flex-wrap: wrap;
-      }
-
-      .col-lg-4 {
-        flex: 1;
-        min-width: 300px;
-      }
-
-      .col-lg-8 {
-        flex: 2;
-        min-width: 400px;
-      }
-
-      .project-wrapper__text-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--main-text-color);
-        margin-bottom: 1.5rem;
-        font-family: var(--font-family);
-      }
-
-      .project-wrapper__text p {
-        font-size: 1.1rem;
-        color: var(--main-text-color);
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        font-family: var(--font-family);
-      }
-
-      .project-wrapper__image img {
-        width: 100%;
-        border-radius: 15px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease;
-      }
-
-      .project-wrapper__image img:hover {
-        transform: scale(1.05);
-      }
-
-      .mb-4 {
-        margin-bottom: 1.5rem;
-      }
-
-      /* 🛠️ Skills Section */
-      #skills {
-        padding: 100px 0;
-        background: var(--main-bg-color);
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-
-      .skill-category {
-        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        border-left: 4px solid var(--secondary-color);
-      }
-
-      .skill-category:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-      }
-
-      .skill-category h3 {
-        font-size: 1.5rem;
-        color: var(--main-text-color);
-        margin-bottom: 1rem;
-        font-family: var(--font-family);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .skill-category h3 i {
-        color: var(--accent-color);
-      }
-
-      .skill-list {
-        list-style: none;
-        padding: 0;
-      }
-
-      .skill-list li {
-        padding: 0.5rem 0;
-        color: var(--main-text-color);
-        font-size: 1.1rem;
-        position: relative;
-        padding-left: 1.5rem;
-        font-family: var(--font-family);
-      }
-
-      .skill-list li::before {
-        content: "▹";
-        position: absolute;
-        left: 0;
-        color: var(--accent-color);
-        font-size: 1.3rem;
-      }
-
-      /* ✉️ Contact */
-      #contact {
-        padding: 10px 0;
-        background: var(--accent-gradient);
-        color: #fff;
-        text-align: center;
-      }
-
-      .contact-wrapper__text {
-        font-size: 1.3rem;
-        margin-bottom: 3rem;
-        font-family: var(--font-family);
-      }
-
-      .contact-links {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-top: 2rem;
-      }
-
-      .contact-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 2rem 2.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid #fff;
-        border-radius: 15px;
-        color: #fff;
-        text-decoration: none;
-        font-family: var(--font-family);
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        min-width: 150px;
-      }
-
-      .contact-btn i {
-        font-size: 2.5rem;
-      }
-
-      .contact-btn:hover {
-        background: #fff;
-        color: var(--accent-color);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      /* ⚙️ Footer */
-      .footer {
-        background: var(--main-text-color);
-        color: #fff;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .back-to-top {
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        color: #fff;
-        transition: transform 0.3s ease;
-      }
-
-      .back-to-top:hover {
-        transform: translateY(-5px);
-      }
-
-      .footer__text {
-        margin-top: 2rem;
-        color: #fff;
-        font-family: var(--font-family);
-      }
-
-      .footer__text a {
-        color: var(--accent-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer__text a:hover {
-        color: #f093fb;
-      }
-
-      /* ✨ Animation */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .load-hidden {
-        opacity: 0;
-        animation: fadeInUp 1s ease forwards;
-      }
-
-      /* 📱 Responsive */
-      @media (max-width: 968px) {
-        .hero-wrapper {
-          flex-direction: column-reverse;
-        }
-
-        .hero-image img {
-          max-width: 300px;
-        }
-
-        .row {
-          flex-direction: column;
-        }
-
-        .col-lg-4,
-        .col-lg-8 {
-          min-width: 100%;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .main-header {
-          padding: 15px 20px;
-        }
-
-        .main-nav {
-          position: fixed;
-          top: 70px;
-          right: -100%;
-          background: var(--header-gradient);
-          width: 70%;
-          height: calc(100vh - 70px);
-          flex-direction: column;
-          padding: 2rem;
-          transition: right 0.3s ease;
-          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .main-nav.active {
-          right: 0;
-        }
-
-        .main-nav ul {
-          flex-direction: column;
-          gap: 20px;
-          width: 100%;
-        }
-
-        .main-nav li {
-          width: 100%;
-          text-align: center;
-        }
-
-        .menu-toggle {
-          display: block;
-        }
-
-        .header-left .site-title {
-          font-size: 1.5em;
-        }
-
-        .hero-title {
-          font-size: 2rem;
-        }
-
-        .section-title {
-          font-size: 2rem;
-        }
-
-        .cta-btn {
-          padding: 0.8rem 2rem;
-          font-size: 1rem;
-        }
-
-        .skills-grid {
-          grid-template-columns: 1fr;
-        }
-
-        #hero {
-          padding-top: 100px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero-title {
-          font-size: 1.5rem;
-        }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
-        .project-wrapper__text-title {
-          font-size: 1.5rem;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="top"></div>
-    <header class="main-header" id="header">
-      <div class="header-left">
-        <a href="#" class="site-title">William Justin</a>
-      </div>
-
-      <nav class="main-nav" id="mainNav">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#featured">Featured</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <a
-              href="path/to/your/resume.pdf"
-              target="_blank"
-              class="resume-button"
-              >Resume</a
-            >
-          </li>
-        </ul>
-      </nav>
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Toggle navigation"
-      >
-        &#9776;
-      </button>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="jumbotron">
-      <div class="container">
-        <div class="hero-wrapper">
-          <div class="hero-image">
-            <img
-              src="b57e6092-6d7c-440c-a646-e76d8b137760.png"
-              alt="Profile picture"
-            />
-          </div>
-          <div class="hero-content">
-            <h1 class="hero-title load-hidden">
-              Hi, my name is
-              <br />
-              <span class="text-color-main">Weallfearnius William Justin</span>
-              <br />
-              Aspiring Full Stack Developer.
-            </h1>
-            <p class="hero-cta load-hidden">
-              <a rel="noreferrer" class="cta-btn cta-btn--hero" href="#about"
-                >Continue</a
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title load-hidden">About me</h2>
-        <div class="about-wrapper">
-          <div class="col-md-6">
-            <div class="about-wrapper__image load-hidden">
-              <img
-                alt="Profile Image"
-                class="img-fluid rounded shadow-lg"
-                src="convo.png.jpg"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="about-wrapper__info load-hidden">
-              <p class="about-wrapper__info-text">
-                I am a petroleum engineer turned full-stack developer,
-                passionate about combining analytical problem-solving with
-                creative technology solutions. After gaining a solid foundation
-                in engineering, I discovered the power of coding to build
-                impactful digital experiences through Gamuda AI Academy. Today,
-                I specialize in developing web applications that are both
-                user-friendly and robust, bridging the gap between technical
-                precision and real-world usability.
-              </p>
-              <p class="about-wrapper__info-text">
-                Outside of work, I enjoy playing sports, with badminton being my
-                favorite. I also love exploring new technologies, experimenting
-                with side projects, and continuously learning to expand my skill
-                set. My goal is to leverage my diverse background to contribute
-                to innovative projects that make a meaningful difference in
-                people's lives.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Section -->
-    <section id="featured">
-      <div class="container">
-        <h2 class="section-title load-hidden">Featured In</h2>
-        <div class="featured-article load-hidden">
-          <div class="featured-source">
-            <i class="fa fa-newspaper-o"></i>
-            The Borneo Post
-          </div>
-
-          <h3 class="featured-title">
-            Gamuda AI Academy graduates first Sabah cohort, signals growing
-            potential in AI talent development
-          </h3>
-
-          <p class="featured-context">
-            As one of the first graduates from Gamuda AI Academy's inaugural
-            Sabah cohort, I was honored to be featured in The Borneo Post
-            discussing my journey from petroleum engineering to full-stack
-            development. This career transition represents my commitment to
-            adapting to the evolving job market and contributing to Sabah's
-            digital future.
-          </p>
-          <img
-            alt="Profile Image"
-            class="smaller-picture"
-            src="9e1369e4-1f43-44b6-baeb-11dc6213d69d.png"
-          />
-
-          <blockquote class="featured-quote">
-            "I realised the oil and gas job market was really competitive after
-            I graduated. The Academy gave me a chance to learn something new,
-            challenge myself, and think long-term."
-            <br /><br />
-            <strong>— Weallfearnius Justin, The Borneo Post</strong>
-          </blockquote>
-
-          <a
-            href="https://www.theborneopost.com/2025/10/03/gamuda-ai-academy-graduates-first-sabah-cohort-signals-growing-potential-in-ai-talent-development/"
-            target="_blank"
-            rel="noreferrer"
-            class="featured-link"
-          >
-            Read the full article <i class="fa fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <div class="container">
-        <div class="project-wrapper">
-          <h2 class="section-title dark-blue-text">Projects</h2>
-
-          <!-- Project 1 -->
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Sabah Road Care</h3>
-                <div>
-                  <p class="mb-4">
-                    Sabah Road Care is a web platform that monitors and reports
-                    road conditions in Sabah. I strengthened skills in
-                    full-stack development, geolocation, and database
-                    management, proactively solving real-time mapping challenges
-                    to ensure accurate, user-friendly reporting.
-                  </p>
-                </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="https://road-care-75.web.app/"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="https://github.com/whaleeeyyyyy/Sabah-Road-Care"
-                >
-                  Source Code
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="project-wrapper__image load-hidden">
-                <a rel="noreferrer" href="#!" target="_blank">
-                  <div class="thumbnail rounded">
-                    <img
-                      alt="Sabah Road Care Project"
-                      class="img-fluid"
-                      src="SRC 1.png"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">DocuMate AI</h3>
-                <div>
-                  <p class="mb-4">
-                    DocuMate AI is an intelligent document assistant that
-                    extracts, summarizes, and answers questions from PDFs using
-                    AI. I honed skills in FastAPI, React, and AI integration,
-                    proactively solving data handling and semantic search
-                    challenges for seamless user experience.
-                  </p>
-                </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="#!"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="https://github.com/whaleeeyyyyy/DocuMate-AI"
-                >
-                  Source Code
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="project-wrapper__image load-hidden">
-                <a rel="noreferrer" href="#!" target="_blank">
-                  <div class="thumbnail rounded">
-                    <img
-                      alt="DocuMate AI Project"
-                      class="img-fluid"
-                      src="DocuMate AI 1.png"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="project-wrapper__text load-hidden">
-                <h3 class="project-wrapper__text-title">Simple Weather App</h3>
-                <div>
-                  <p class="mb-4">
-                    Simple Weather App displays real-time weather data for any
-                    location. I reinforced skills in API integration, frontend
-                    design, and responsive UI, proactively handling data
-                    fetching and error management to ensure smooth,
-                    user-friendly experience.
-                  </p>
-                </div>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn cta-btn--hero"
-                  href="https://whaleeeyyyyy.github.io/Simple-Weather-App/"
-                >
-                  See Live
-                </a>
-                <a
-                  rel="noreferrer"
-                  target="_blank"
-                  class="cta-btn text-color-main"
-                  href="https://github.com/whaleeeyyyyy/Simple-Weather-App"
-                >
-                  Source Code
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="project-wrapper__image load-hidden">
-                <a rel="noreferrer" href="#!" target="_blank">
-                  <div class="thumbnail rounded">
-                    <img
-                      alt="Weather App Project"
-                      class="img-fluid"
-                      src="Simple Weather App 4.png"
-                    />
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-wrapper load-hidden">
-          <p class="contact-wrapper__text">
-            Let's work together! Feel free to reach out through any of these
-            platforms:
-          </p>
-
-          <div class="contact-links">
-            <a
-              rel="noreferrer"
-              target="_blank"
-              class="contact-btn"
-              href="weallfearniusj03@gmail.com"
-            >
-              <i class="fa fa-envelope"></i>
-              <span>Email</span>
-            </a>
-            <a
-              rel="noreferrer"
-              target="_blank"
-              class="contact-btn"
-              href="https://linkedin.com/in/whaleeeyyyyy"
-            >
-              <i class="fa fa-linkedin"></i>
-              <span>LinkedIn</span>
-            </a>
-            <a
-              rel="noreferrer"
-              target="_blank"
-              class="contact-btn"
-              href="https://github.com/whaleeeyyyyy"
-            >
-              <i class="fa fa-github"></i>
-              <span>GitHub</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="footer navbar-static-bottom">
-      <div class="container">
-        <a rel="noreferrer" href="#top" class="back-to-top">
-          <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
-        </a>
-
-        <hr />
-
-        <p class="footer__text">
-          © 2025 - Weallfearnius William Justin. Template by
-          <a
-            rel="noreferrer"
-            href="https://github.com/cobiwave"
-            target="_blank"
-          >
-            Jacobo Martínez
-          </a>
-        </p>
-      </div>
-    </footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Justin | Software Developer</title>
+    <meta name="keywords" content="william, developer, software, portfolio, petroleum engineer transition">
+    <meta name="description" content="Weallfearnius William Justin | Software Developer - From Petroleum Engineering to Code Crafting">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <script>
-      // Header hide on scroll
-      let lastScroll = 0;
-      const header = document.getElementById("header");
-
-      window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll <= 0) {
-          header.classList.remove("hidden");
-          return;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3959e4',
+                        secondary: '#667eea',
+                        accent: '#764ba2',
+                        dark: '#1e293b',
+                        light: '#f8f9fa'
+                    }
+                }
+            }
         }
-
-        if (currentScroll > lastScroll && currentScroll > 100) {
-          header.classList.add("hidden");
-        } else {
-          header.classList.remove("hidden");
-        }
-
-        lastScroll = currentScroll;
-      });
-
-      // Mobile menu toggle
-      const menuToggle = document.getElementById("menuToggle");
-      const mainNav = document.getElementById("mainNav");
-
-      menuToggle.addEventListener("click", () => {
-        mainNav.classList.toggle("active");
-        const isActive = mainNav.classList.contains("active");
-        menuToggle.innerHTML = isActive ? "&times;" : "&#9776;";
-      });
-
-      // Close mobile menu when clicking on a link
-      const navLinks = mainNav.querySelectorAll("a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          mainNav.classList.remove("active");
-          menuToggle.innerHTML = "&#9776;";
-        });
-      });
     </script>
-  </body>
+</head>
+<body class="font-sans bg-white text-gray-800">
+    <custom-header></custom-header>
+    <achievements-modal></achievements-modal>
+<!-- Hero Section -->
+    <section id="hero" class="min-h-screen bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center pt-10 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full animate-pulse"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-accent/30 rounded-full animate-ping"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-20 h-20 bg-secondary/40 rounded-full animate-bounce"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-16 h-16 bg-white/20 rounded-full animate-pulse" style="animation-delay: 0.7s;"></div>
+        </div>
+        
+        <!-- Floating code symbols -->
+        <div class="absolute top-10 left-10 text-white/10 text-8xl">{"}</div>
+        <div class="absolute top-20 right-20 text-white/10 text-4xl">{"}"}</div>
+        <div class="absolute bottom-20 left-20 text-white/10 text-5xl">{"<"}</div>
+        <div class="absolute bottom-10 right-10 text-white/10 text-3xl">{">"}</div>
+<div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                        Hi, I'm <span class="bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">Weallfearnius Justin</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-white/90 mb-8">
+                        Software Developer with a Petroleum Engineering background, crafting digital solutions that make an impact.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#projects" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            View My Work
+                        </a>
+                        <a href="resume.pdf" target="_blank" class="bg-accent text-white px-8 py-3 rounded-full font-semibold hover:bg-accent/90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex items-center gap-2">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            View Resume
+                        </a>
+                        <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition-all duration-300">
+                            Get In Touch
+                        </a>
+                    </div>
+</div>
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <div class="relative">
+                        <img src="b57e6092-6d7c-440c-a646-e76d8b137760.png" 
+                             alt="William Justin - Software Developer" 
+                             class="w-80 h-80 rounded-full object-cover border-8 border-white/20 shadow-2xl z-10 relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full -z-10 animate-pulse"></div>
+                    </div>
+                    
+                    <!-- Floating achievement badges around the profile picture -->
+                    <div class="absolute -top-4 -right-4 bg-white p-2 rounded-full shadow-xl z-20 animate-bounce">
+                        <i data-feather="award" class="w-6 h-6 text-yellow-500"></i>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-white p-2 rounded-full shadow-xl z-20 animate-bounce" style="animation-delay: 0.5s;">
+                        <i data-feather="star" class="w-6 h-6 text-blue-500"></i>
+                    </div>
+                    <div class="absolute top-1/2 -right-12 bg-white p-2 rounded-full shadow-xl z-20 animate-pulse">
+                        <i data-feather="trophy" class="w-6 h-6 text-orange-500"></i>
+                    </div>
+                </div>
+</div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-light relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+<div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 relative">
+                About Me
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="convo.png.jpg" 
+                         alt="William Justin discussing software development" 
+                         class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl -z-10 opacity-20"></div>
+                </div>
+                
+                <div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <p class="text-lg leading-relaxed mb-6">
+                            I transitioned from Petroleum Engineering to Software Development, bringing analytical problem-solving skills and a passion for creating impactful digital experiences. My journey through Gamuda AI Academy ignited my love for building solutions that bridge technical precision with real-world usability.
+                        </p>
+                        <p class="text-lg leading-relaxed mb-8">
+                            Beyond coding, I'm an avid badminton player and enjoy exploring new technologies through side projects. My diverse background allows me to approach challenges from unique perspectives, creating innovative solutions that make a meaningful difference.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl">
+                                <i data-feather="code" class="w-8 h-8 text-primary mx-auto mb-2"></i>
+                                <p class="font-semibold">Full-Stack Development</p>
+                            </div>
+                            <div class="text-center p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl">
+                                <i data-feather="cpu" class="w-8 h-8 text-primary mx-auto mb-2"></i>
+                                <p class="font-semibold">AI Integration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Section -->
+    <section id="featured" class="py-20 relative">
+        <!-- Subtle background pattern -->
+        <div class="absolute inset-0 opacity-3">
+            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+<div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 relative">
+                Featured In
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
+            </h2>
+
+            <div class="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-2xl shadow-lg border-l-4 border-primary">
+                <div class="flex items-center gap-4 mb-6">
+                    <i data-feather="book-open" class="w-8 h-8 text-primary"></i>
+                    <span class="text-2xl font-semibold text-primary">The Borneo Post</span>
+                </div>
+
+                <h3 class="text-2xl md:text-3xl font-bold mb-6">
+                    Gamuda AI Academy graduates first Sabah cohort, signals growing potential in AI talent development
+                </h3>
+
+                <p class="text-lg leading-relaxed mb-6">
+                    As one of the first graduates from Gamuda AI Academy's inaugural Sabah cohort, I was honored to be featured discussing my journey from petroleum engineering to software development. This career transition represents my commitment to adapting to the evolving job market and contributing to Sabah's digital future.
+                </p>
+
+                <img src="9e1369e4-1f43-44b6-baeb-11dc6213d69d.png" 
+                     alt="Gamuda AI Academy feature" 
+                     class="w-full max-w-md mx-auto rounded-xl shadow-lg mb-6">
+
+                <blockquote class="bg-white p-6 rounded-xl border-l-4 border-accent italic text-lg mb-6">
+                    "I realised the oil and gas job market was really competitive after I graduated. The Academy gave me a chance to learn something new, challenge myself, and think long-term."
+                    <br><br>
+                    <strong class="not-italic">— Weallfearnius Justin, The Borneo Post</strong>
+                </blockquote>
+
+                <a href="https://www.theborneopost.com/2025/10/03/gamuda-ai-academy-graduates-first-sabah-cohort-signals-growing-potential-in-ai-talent-development/"
+                   target="_blank"
+                   class="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors">
+                    Read the full article
+                    <i data-feather="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-light relative">
+        <!-- Subtle grid background -->
+        <div class="absolute inset-0 opacity-3">
+            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.03\" fill-rule=\"evenodd\"%3E%3Cpath d=\"M0 40L40 0H20L0 20M40 40V20L20 40\"/%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+<div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 relative">
+                Projects
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
+            </h2>
+
+            <!-- Project 1 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 lg:order-1">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                            Full-Stack Development
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Sabah Road Care</h3>
+                        <p class="text-lg leading-relaxed mb-6">
+                            A comprehensive web platform monitoring and reporting road conditions across Sabah. I developed advanced geolocation features and real-time database management systems, solving complex mapping challenges to ensure accurate, user-friendly reporting.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://road-care-75.web.app/"
+                               target="_blank"
+                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/whaleeeyyyyy/Sabah-Road-Care"
+                               target="_blank"
+                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <img src="SRC 1.png" 
+                         alt="Sabah Road Care Project" 
+                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <div>
+                    <img src="DocuMate AI 1.png" 
+                         alt="DocuMate AI Project" 
+                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
+                </div>
+                <div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                            AI Integration
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">DocuMate AI</h3>
+                        <p class="text-lg leading-relaxed mb-6">
+                            An intelligent document assistant that extracts, summarizes, and answers questions from PDFs using advanced AI. I engineered seamless integration between FastAPI and React, solving data handling and semantic search challenges for optimal user experience.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#!"
+                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/whaleeeyyyyy/DocuMate-AI"
+                               target="_blank"
+                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
+                            Frontend Development
+                        </span>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Simple Weather App</h3>
+                        <p class="text-lg leading-relaxed mb-6">
+                            A clean, responsive weather application displaying real-time data for any location. I focused on API integration excellence and intuitive UI design, implementing robust error handling and smooth user interactions.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://whaleeeyyyyy.github.io/Simple-Weather-App/"
+                               target="_blank"
+                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/whaleeeyyyyy/Simple-Weather-App"
+                               target="_blank"
+                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <img src="Simple Weather App 4.png" 
+                         alt="Weather App Project" 
+                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"30\" height=\"30\" viewBox=\"0 0 30 30\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"15\" cy=\"15\" r=\"1\"/%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+<div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 relative">
+                Skills & Technologies
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Frontend -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-primary">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-feather="layout" class="w-6 h-6 text-primary"></i>
+                        <h3 class="text-xl font-semibold">Frontend Development</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            React.js & Next.js
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            Tailwind CSS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            JavaScript/TypeScript
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            Responsive Design
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-secondary">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-feather="server" class="w-6 h-6 text-secondary"></i>
+                        <h3 class="text-xl font-semibold">Backend Development</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            Node.js & Express
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            Python & FastAPI
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            RESTful APIs
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            Database Management
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- AI/ML -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-accent">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-feather="cpu" class="w-6 h-6 text-accent"></i>
+                        <h3 class="text-xl font-semibold">AI & Machine Learning</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
+                            NLP & Text Processing
+</body>
 </html>
