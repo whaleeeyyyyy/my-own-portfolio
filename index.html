@@ -1,436 +1,865 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>William Justin | Software Developer</title>
-    <meta name="keywords" content="william, developer, software, portfolio, petroleum engineer transition">
-    <meta name="description" content="Weallfearnius William Justin | Software Developer - From Petroleum Engineering to Code Crafting">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta
+      name="keywords"
+      content="william, developer, software, portfolio, petroleum engineer transition"
+    />
+    <meta
+      name="description"
+      content="William Justin | Software Developer - From Petroleum Engineering to Code Crafting"
+    />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#000000',
-                        secondary: '#333333',
-                        accent: '#666666',
-                        dark: '#1a1a1a',
-                        light: '#f5f5f5'
-                    }
-                }
-            }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --navy: #0f2538;
+        --mario: #d62828;
+        --amber: #ffcc77;
+        --offwhite: #f8f8f8;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--navy);
+        color: var(--offwhite);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: rgba(15, 37, 56, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 204, 119, 0.1);
+      }
+
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+
+      .logo {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--amber);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--offwhite);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--amber);
+      }
+
+      /* Hero Section */
+      #hero {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-background {
+        position: absolute;
+        inset: 0;
+      }
+
+      .hero-background img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.4;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 37, 56, 0.6),
+          rgba(15, 37, 56, 0.8),
+          var(--navy)
+        );
+      }
+
+      /* Section Divider */
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--amber),
+          transparent
+        );
+        margin: 0 auto;
+        width: 80%;
+        opacity: 0.3;
+      }
+
+      /* Section Styles */
+      section {
+        padding: 96px 0;
+      }
+
+      .section-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 64px;
+        color: var(--amber);
+      }
+
+      .hero-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 56px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 16px;
+        text-shadow: 0 0 20px rgba(255, 204, 119, 0.3);
+      }
+
+      .hero-subtitle {
+        text-align: center;
+        color: var(--amber);
+        font-size: 18px;
+        letter-spacing: 2px;
+        margin-bottom: 64px;
+      }
+
+      /* Grid Layouts */
+      .grid-2col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .grid-3col {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+
+      @media (max-width: 1024px) {
+        .grid-2col {
+          grid-template-columns: 1fr;
         }
-    </script>
-</head>
-<body class="font-sans bg-white text-gray-800 antialiased">
-    <custom-header></custom-header>
-    <achievements-modal></achievements-modal>
+        .grid-3col {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-    <!-- Hero Section - Minimalist New Genre Style -->
-    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden bg-black text-white">
-        <!-- Background elements -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-20 left-20 w-1 h-32 bg-white"></div>
-            <div class="absolute bottom-20 right-20 w-1 h-24 bg-white"></div>
-            <div class="absolute top-1/2 left-1/4 w-0.5 h-16 bg-white transform -rotate-45"></div>
-            <div class="absolute bottom-1/3 right-1/4 w-0.5 h-20 bg-white transform rotate-45"></div>
-        </div>
-        
-        <!-- Grid lines -->
-        <div class="absolute inset-0 grid grid-cols-12 gap-4 opacity-5 pointer-events-none">
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-            <div class="border-r border-white"></div>
-        </div>
+      @media (max-width: 768px) {
+        .grid-3col {
+          grid-template-columns: 1fr;
+        }
+        .nav-links {
+          gap: 16px;
+          font-size: 14px;
+        }
+        .hero-title {
+          font-size: 36px;
+        }
+        .section-title {
+          font-size: 32px;
+        }
+      }
 
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
-                <div class="lg:w-1/2 text-center lg:text-left">
-                    <div class="mb-8">
-                        <span class="text-sm uppercase tracking-widest text-gray-400 mb-4 block">Software Developer</span>
-                        <h1 class="text-6xl md:text-8xl font-normal text-white mb-6 leading-none">
-                            WILLIAM<br>JUSTIN
-                        </h1>
-                    </div>
-                    
-                    <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-md mx-auto lg:mx-0">
-                        Petroleum engineer turned software developer crafting digital experiences with purpose.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#projects" class="border border-white text-white px-8 py-4 font-normal hover:bg-white hover:text-black transition-all duration-300 text-sm tracking-widest uppercase">
-                            View Projects
-                        </a>
-                        <a href="#contact" class="border border-white text-white px-8 py-4 font-normal hover:bg-white hover:text-black transition-all duration-300 text-sm tracking-widest uppercase">
-                            Contact
-                        </a>
-                        <a href="/resume.pdf" target="_blank" class="border border-white text-white px-8 py-4 font-normal hover:bg-white hover:text-black transition-all duration-300 text-sm tracking-widest uppercase">
-                            View Resume
-                        </a>
-                    </div>
-</div>
-                
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <img src="b57e6092-6d7c-440c-a646-e76d8b137760.png" 
-                             alt="William Justin - Software Developer" 
-                             class="w-96 h-96 object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                        <div class="absolute -inset-4 border border-white opacity-50"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      /* Image Styles */
+      .image-wrapper {
+        position: relative;
+      }
 
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-            <div class="w-px h-12 bg-white opacity-50">
-            </div>
-        </div>
+      .image-glow::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        background: linear-gradient(to right, var(--mario), var(--amber));
+        border-radius: 16px;
+        opacity: 0.3;
+        filter: blur(40px);
+      }
+
+      .image-wrapper img {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 204, 119, 0.2);
+      }
+
+      /* Text Content */
+      .text-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .text-content p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(248, 248, 248, 0.9);
+      }
+
+      .text-content .highlight {
+        color: var(--amber);
+        font-weight: 600;
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        gap: 16px;
+        padding-top: 16px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 16px 32px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background-color: var(--mario);
+        color: var(--offwhite);
+      }
+
+      .btn-primary:hover {
+        background-color: rgba(214, 40, 40, 0.8);
+      }
+
+      .btn-secondary {
+        border: 2px solid var(--amber);
+        color: var(--amber);
+        background-color: transparent;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--amber);
+        color: var(--navy);
+      }
+
+      /* Cards */
+      .card {
+        background-color: rgba(15, 37, 56, 0.5);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 204, 119, 0.2);
+        padding: 32px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px rgba(255, 204, 119, 0.2);
+      }
+
+      .card-tag {
+        background-color: var(--mario);
+        color: var(--offwhite);
+        padding: 8px 16px;
+        border-radius: 24px;
+        font-size: 14px;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 16px;
+      }
+
+      .card-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--offwhite);
+      }
+
+      .card-text {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(248, 248, 248, 0.8);
+        margin-bottom: 24px;
+      }
+
+      /* Featured Section */
+      .featured-card {
+        background-color: rgba(15, 37, 56, 0.5);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 204, 119, 0.2);
+        padding: 32px;
+        border-radius: 16px;
+      }
+
+      .featured-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .featured-source {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--amber);
+      }
+
+      .featured-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        color: var(--offwhite);
+      }
+
+      .featured-image {
+        position: relative;
+        margin: 24px auto;
+        max-width: 500px;
+      }
+
+      .featured-image::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        background: linear-gradient(to right, var(--mario), var(--amber));
+        border-radius: 12px;
+        opacity: 0.2;
+        filter: blur(20px);
+      }
+
+      .featured-image img {
+        position: relative;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 204, 119, 0.3);
+      }
+
+      blockquote {
+        background-color: rgba(15, 37, 56, 0.8);
+        padding: 24px;
+        border-radius: 12px;
+        border-left: 4px solid var(--mario);
+        font-style: italic;
+        font-size: 18px;
+        margin: 24px 0;
+        color: rgba(248, 248, 248, 0.9);
+      }
+
+      blockquote strong {
+        font-style: normal;
+        color: var(--amber);
+        display: block;
+        margin-top: 16px;
+      }
+
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--amber);
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .read-more:hover {
+        color: var(--mario);
+      }
+
+      /* Projects Section */
+      .project-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+      }
+
+      /* Skills Section */
+      .skill-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .skill-card-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--offwhite);
+      }
+
+      .skill-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: rgba(248, 248, 248, 0.8);
+      }
+
+      .check-icon {
+        width: 16px;
+        height: 16px;
+        color: var(--mario);
+      }
+
+      /* Achievements Section */
+      .achievement-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(255, 204, 119, 0.2);
+      }
+
+      .achievement-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--offwhite);
+      }
+
+      .achievement-desc {
+        color: rgba(248, 248, 248, 0.7);
+      }
+
+      /* Contact Section */
+      .contact-section {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .contact-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 32px;
+        color: var(--amber);
+      }
+
+      .contact-text {
+        font-size: 20px;
+        margin-bottom: 48px;
+        color: rgba(248, 248, 248, 0.8);
+      }
+
+      .contact-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      /* Footer */
+      footer {
+        padding: 32px 0;
+        border-top: 1px solid rgba(255, 204, 119, 0.1);
+        text-align: center;
+        color: rgba(248, 248, 248, 0.6);
+      }
+
+      /* Icon Colors */
+      .icon-amber {
+        color: var(--amber);
+      }
+
+      .icon-mario {
+        color: var(--mario);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="hero-background">
+        <img
+          src="ChatGPT Image Nov 6, 2025, 06_12_09 PM.png"
+          alt="Pixel Art Developer Scene"
+        />
+      </div>
     </section>
 
-<!-- About Section -->
-    <section id="about" class="py-20 bg-light relative">
-<!-- Background pattern -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"3\" cy=\"3\" r=\"3\"/%3E%3Ccircle cx=\"13\" cy=\"13\" r=\"3\"/%3E%3C/g%3E%3C/svg%3E');"></div>
-        </div>
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 relative">
-                About Me
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
-            </h2>
-            
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="relative">
-                    <img src="convo.png.jpg" 
-                         alt="William Justin discussing software development" 
-                         class="rounded-2xl shadow-2xl w-full">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl -z-10 opacity-20"></div>
-                </div>
-                
-                <div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <p class="text-lg leading-relaxed mb-6">
-                            I transitioned from Petroleum Engineering to Software Development, bringing analytical problem-solving skills and a passion for creating impactful digital experiences. My journey through Gamuda AI Academy ignited my love for building solutions that bridge technical precision with real-world usability.
-                        </p>
-                        <p class="text-lg leading-relaxed mb-8">
-                            Beyond coding, I'm an avid badminton player and enjoy exploring new technologies through side projects. My diverse background allows me to approach challenges from unique perspectives, creating innovative solutions that make a meaningful difference.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="text-center p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl">
-                                <i data-feather="code" class="w-8 h-8 text-primary mx-auto mb-2"></i>
-                                <p class="font-semibold">Full-Stack Development</p>
-                            </div>
-                            <div class="text-center p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl">
-                                <i data-feather="cpu" class="w-8 h-8 text-primary mx-auto mb-2"></i>
-                                <p class="font-semibold">AI Integration</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="hero-title">
+          <span>WEALLFEARNIUS</span>
+          <span style="color: var(--amber)">WILLIAM</span> <span>JUSTIN</span>
+        </h2>
+        <p class="hero-subtitle">SOFTWARE DEVELOPER</p>
+
+        <div class="grid-2col">
+          <div class="image-wrapper image-glow">
+            <img src="convo.png.jpg" alt="William Justin" />
+          </div>
+
+          <div class="text-content">
+            <p>
+              I transitioned from
+              <span class="highlight">Petroleum Engineering</span> to
+              <span class="highlight">Software Development</span>, bringing
+              analytical problem-solving skills and a passion for creating
+              impactful digital experiences. My journey through Gamuda AI
+              Academy ignited my love for building solutions that bridge
+              technical precision with real-world usability.
+            </p>
+            <p>
+              Beyond coding, I'm an avid badminton player and enjoy exploring
+              new technologies through side projects. My diverse background
+              allows me to approach challenges from unique perspectives,
+              creating innovative solutions that make a meaningful difference.
+            </p>
+
+            <div class="button-group">
+              <a href="#projects" class="btn btn-primary">View Projects</a>
+              <a href="/resume.pdf" target="_blank" class="btn btn-secondary"
+                >Resume</a
+              >
             </div>
+          </div>
         </div>
+      </div>
     </section>
+
+    <div class="section-divider"></div>
+
     <!-- Featured Section -->
-    <section id="featured" class="py-20 relative">
-        <!-- Subtle background pattern -->
-        <div class="absolute inset-0 opacity-3">
-            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <section id="featured">
+      <div class="container">
+        <h2 class="section-title">Featured In</h2>
+
+        <div class="featured-card">
+          <div class="featured-header">
+            <i
+              data-feather="book-open"
+              class="icon-amber"
+              style="width: 32px; height: 32px"
+            ></i>
+            <span class="featured-source">The Borneo Post</span>
+          </div>
+
+          <h3 class="featured-title">
+            Gamuda AI Academy graduates first Sabah cohort, signals growing
+            potential in AI talent development
+          </h3>
+
+          <p class="card-text">
+            As one of the first graduates from Gamuda AI Academy's inaugural
+            Sabah cohort, I was honored to be featured discussing my journey
+            from petroleum engineering to software development. This career
+            transition represents my commitment to adapting to the evolving job
+            market and contributing to Sabah's digital future.
+          </p>
+
+          <div class="featured-image">
+            <img
+              src="9e1369e4-1f43-44b6-baeb-11dc6213d69d.png"
+              alt="Gamuda AI Academy feature"
+            />
+          </div>
+
+          <blockquote>
+            "I realised the oil and gas job market was really competitive after
+            I graduated. The Academy gave me a chance to learn something new,
+            challenge myself, and think long-term."
+            <strong>— Weallfearnius Justin, The Borneo Post</strong>
+          </blockquote>
+
+          <a
+            href="https://www.theborneopost.com/2025/10/03/gamuda-ai-academy-graduates-first-sabah-cohort-signals-growing-potential-in-ai-talent-development/"
+            target="_blank"
+            class="read-more"
+          >
+            Read the full article
+            <i data-feather="arrow-right" style="width: 20px; height: 20px"></i>
+          </a>
         </div>
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 relative">
-                Featured In
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
-            </h2>
-
-            <div class="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-2xl shadow-lg border-l-4 border-primary">
-                <div class="flex items-center gap-4 mb-6">
-                    <i data-feather="book-open" class="w-8 h-8 text-primary"></i>
-                    <span class="text-2xl font-semibold text-primary">The Borneo Post</span>
-                </div>
-
-                <h3 class="text-2xl md:text-3xl font-bold mb-6">
-                    Gamuda AI Academy graduates first Sabah cohort, signals growing potential in AI talent development
-                </h3>
-
-                <p class="text-lg leading-relaxed mb-6">
-                    As one of the first graduates from Gamuda AI Academy's inaugural Sabah cohort, I was honored to be featured discussing my journey from petroleum engineering to software development. This career transition represents my commitment to adapting to the evolving job market and contributing to Sabah's digital future.
-                </p>
-
-                <img src="9e1369e4-1f43-44b6-baeb-11dc6213d69d.png" 
-                     alt="Gamuda AI Academy feature" 
-                     class="w-full max-w-md mx-auto rounded-xl shadow-lg mb-6">
-
-                <blockquote class="bg-white p-6 rounded-xl border-l-4 border-accent italic text-lg mb-6">
-                    "I realised the oil and gas job market was really competitive after I graduated. The Academy gave me a chance to learn something new, challenge myself, and think long-term."
-                    <br><br>
-                    <strong class="not-italic">— Weallfearnius Justin, The Borneo Post</strong>
-                </blockquote>
-
-                <a href="https://www.theborneopost.com/2025/10/03/gamuda-ai-academy-graduates-first-sabah-cohort-signals-growing-potential-in-ai-talent-development/"
-                   target="_blank"
-                   class="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors">
-                    Read the full article
-                    <i data-feather="arrow-right" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
+      </div>
     </section>
+
+    <div class="section-divider"></div>
+
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-light relative">
-        <!-- Subtle grid background -->
-        <div class="absolute inset-0 opacity-3">
-            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.03\" fill-rule=\"evenodd\"%3E%3Cpath d=\"M0 40L40 0H20L0 20M40 40V20L20 40\"/%3E%3C/g%3E%3C/svg%3E');"></div>
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-grid">
+          <!-- Project 1 -->
+          <div class="grid-2col">
+            <div class="card">
+              <span class="card-tag">Full-Stack Development</span>
+              <h3 class="card-title">Sabah Road Care</h3>
+              <p class="card-text">
+                A comprehensive web platform monitoring and reporting road
+                conditions across Sabah. I developed advanced geolocation
+                features and real-time database management systems.
+              </p>
+              <div class="button-group">
+                <a
+                  href="https://road-care-75.web.app/"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >Live Demo</a
+                >
+                <a
+                  href="https://github.com/whaleeeyyyyy/Sabah-Road-Care"
+                  target="_blank"
+                  class="btn btn-secondary"
+                  >Source Code</a
+                >
+              </div>
+            </div>
+            <div class="image-wrapper image-glow">
+              <img src="SRC 1.png" alt="Sabah Road Care Project" />
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="grid-2col">
+            <div class="image-wrapper image-glow">
+              <img src="DocuMate AI 1.png" alt="DocuMate AI Project" />
+            </div>
+            <div class="card">
+              <span class="card-tag">AI Integration</span>
+              <h3 class="card-title">DocuMate AI</h3>
+              <p class="card-text">
+                An intelligent document assistant that extracts, summarizes, and
+                answers questions from PDFs using advanced AI. Seamless
+                integration between FastAPI and React.
+              </p>
+              <div class="button-group">
+                <a href="#!" class="btn btn-primary">Live Demo</a>
+                <a
+                  href="https://github.com/whaleeeyyyyy/DocuMate-AI"
+                  target="_blank"
+                  class="btn btn-secondary"
+                  >Source Code</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="grid-2col">
+            <div class="card">
+              <span class="card-tag">Frontend Development</span>
+              <h3 class="card-title">Simple Weather App</h3>
+              <p class="card-text">
+                A clean, responsive weather application displaying real-time
+                data for any location. Focused on API integration excellence and
+                intuitive UI design.
+              </p>
+              <div class="button-group">
+                <a
+                  href="https://whaleeeyyyyy.github.io/Simple-Weather-App/"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >Live Demo</a
+                >
+                <a
+                  href="https://github.com/whaleeeyyyyy/Simple-Weather-App"
+                  target="_blank"
+                  class="btn btn-secondary"
+                  >Source Code</a
+                >
+              </div>
+            </div>
+            <div class="image-wrapper image-glow">
+              <img src="Simple Weather App 4.png" alt="Weather App Project" />
+            </div>
+          </div>
         </div>
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 relative">
-                Projects
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
-            </h2>
-
-            <!-- Project 1 -->
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-                <div class="order-2 lg:order-1">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
-                            Full-Stack Development
-                        </span>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Sabah Road Care</h3>
-                        <p class="text-lg leading-relaxed mb-6">
-                            A comprehensive web platform monitoring and reporting road conditions across Sabah. I developed advanced geolocation features and real-time database management systems, solving complex mapping challenges to ensure accurate, user-friendly reporting.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://road-care-75.web.app/"
-                               target="_blank"
-                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/whaleeeyyyyy/Sabah-Road-Care"
-                               target="_blank"
-                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
-                                Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-1 lg:order-2">
-                    <img src="SRC 1.png" 
-                         alt="Sabah Road Care Project" 
-                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-                <div>
-                    <img src="DocuMate AI 1.png" 
-                         alt="DocuMate AI Project" 
-                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
-                </div>
-                <div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
-                            AI Integration
-                        </span>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">DocuMate AI</h3>
-                        <p class="text-lg leading-relaxed mb-6">
-                            An intelligent document assistant that extracts, summarizes, and answers questions from PDFs using advanced AI. I engineered seamless integration between FastAPI and React, solving data handling and semantic search challenges for optimal user experience.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#!"
-                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/whaleeeyyyyy/DocuMate-AI"
-                               target="_blank"
-                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
-                                Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <span class="bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full text-sm font-semibold mb-4 inline-block">
-                            Frontend Development
-                        </span>
-                        <h3 class="text-2xl md:text-3xl font-bold mb-4">Simple Weather App</h3>
-                        <p class="text-lg leading-relaxed mb-6">
-                            A clean, responsive weather application displaying real-time data for any location. I focused on API integration excellence and intuitive UI design, implementing robust error handling and smooth user interactions.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://whaleeeyyyyy.github.io/Simple-Weather-App/"
-                               target="_blank"
-                               class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/whaleeeyyyyy/Simple-Weather-App"
-                               target="_blank"
-                               class="border-2 border-primary text-primary px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-colors">
-                                Source Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-1 lg:order-2">
-                    <img src="Simple Weather App 4.png" 
-                         alt="Weather App Project" 
-                         class="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
+
+    <div class="section-divider"></div>
+
     <!-- Skills Section -->
-    <section id="skills" class="py-20 relative">
-        <!-- Background pattern -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"30\" height=\"30\" viewBox=\"0 0 30 30\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.1\" fill-rule=\"evenodd\"%3E%3Ccircle cx=\"15\" cy=\"15\" r=\"1\"/%3E%3C/g%3E%3C/svg%3E');"></div>
-        </div>
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 relative">
-                Skills & Technologies
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
-            </h2>
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills & Technologies</h2>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Frontend -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-primary">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i data-feather="layout" class="w-6 h-6 text-primary"></i>
-                        <h3 class="text-xl font-semibold">Frontend Development</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            React.js & Next.js
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            Tailwind CSS
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            JavaScript/TypeScript
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            Responsive Design
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Backend -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-secondary">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i data-feather="server" class="w-6 h-6 text-secondary"></i>
-                        <h3 class="text-xl font-semibold">Backend Development</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            Node.js & Express
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            Python & FastAPI
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            RESTful APIs
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            Database Management
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- AI/ML -->
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-l-4 border-accent">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i data-feather="cpu" class="w-6 h-6 text-accent"></i>
-                        <h3 class="text-xl font-semibold">AI & Machine Learning</h3>
-                    </div>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2">
-                            <i data-feather="check" class="w-4 h-4 text-green-500"></i>
-                            NLP & Text Processing  
-                        </li>
-                                    </div>
+        <div class="grid-3col">
+          <!-- Frontend -->
+          <div class="card">
+            <div class="skill-card-header">
+              <i
+                data-feather="layout"
+                class="icon-amber"
+                style="width: 24px; height: 24px"
+              ></i>
+              <h3 class="skill-card-title">Frontend</h3>
             </div>
-        </div>
-    </section>
-        <!-- Achievements Section -->
-    <section id="achievements" class="py-20 bg-gradient-to-br from-primary/5 to-accent/5 relative">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 w-full h-full bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%233959e4\" fill-opacity=\"0.05\" fill-rule=\"evenodd\"%3E%3Cpath d=\"M0 40L40 0H20L0 20M40 40V20L20 40\"/%3E%3C/g%3E%3C/svg%3E');"></div>
-        </div>
-        
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 relative">
-                Achievements
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full"></span>
-            </h2>
+            <ul class="skill-list">
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                React.js & Next.js
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Tailwind CSS
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                JavaScript/TypeScript
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Responsive Design
+              </li>
+            </ul>
+          </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/1" alt="Gold Medal - State Championship" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Gold Medal</h3>
-                    <p class="text-gray-600">State Championship 2023 - Men's Singles</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/2" alt="Silver Medal - Regional Tournament" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Silver Medal</h3>
-                    <p class="text-gray-600">Regional Tournament 2022 - Doubles Category</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/3" alt="Bronze Medal - University Games" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Bronze Medal</h3>
-                    <p class="text-gray-600">University Games 2021 - Mixed Doubles</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/4" alt="Championship Trophy - Local League" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Championship Trophy</h3>
-                    <p class="text-gray-600">Local League Winner 2020 - Team Event</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/5" alt="Finalist Certificate - National Open" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Finalist Certificate</h3>
-                    <p class="text-gray-600">National Open 2019 - Quarterfinalist</p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
-                    <img src="http://static.photos/sport/320x240/6" alt="Participation Award - International Meet" class="w-full h-48 object-cover rounded-xl mb-4">
-                    <h3 class="text-xl font-semibold mb-2">Participation Award</h3>
-                    <p class="text-gray-600">International Friendly Meet 2018 - Representing State</p>
-                </div>
+          <!-- Backend -->
+          <div class="card">
+            <div class="skill-card-header">
+              <i
+                data-feather="server"
+                class="icon-amber"
+                style="width: 24px; height: 24px"
+              ></i>
+              <h3 class="skill-card-title">Backend</h3>
             </div>
+            <ul class="skill-list">
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Node.js & Express
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Python & FastAPI
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                RESTful APIs
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Database Management
+              </li>
+            </ul>
+          </div>
+
+          <!-- AI/ML -->
+          <div class="card">
+            <div class="skill-card-header">
+              <i
+                data-feather="cpu"
+                class="icon-amber"
+                style="width: 24px; height: 24px"
+              ></i>
+              <h3 class="skill-card-title">AI & ML</h3>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                NLP & Text Processing
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                Machine Learning
+              </li>
+              <li class="skill-item">
+                <i data-feather="check" class="check-icon"></i>
+                API Integration
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
-                                
-<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
-</body>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container contact-section">
+        <h2 class="contact-title">Let's Connect</h2>
+        <p class="contact-text">
+          Interested in working together or have a question? Feel free to reach
+          out!
+        </p>
+
+        <div class="contact-buttons">
+          <a href="mailto:your.email@example.com" class="btn btn-primary"
+            >Get In Touch</a
+          >
+          <a
+            href="https://github.com/whaleeeyyyyy"
+            target="_blank"
+            class="btn btn-secondary"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 William Justin. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      feather.replace();
+    </script>
+  </body>
 </html>
